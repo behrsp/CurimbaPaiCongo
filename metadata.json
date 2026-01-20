@@ -1,0 +1,7 @@
+{
+  "name": "Curimba Pai Congo",
+  "description": "Plataforma exclusiva para membros da Curimba Pai Congo, com gestão de guias, pontos e arquivos da casa.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
