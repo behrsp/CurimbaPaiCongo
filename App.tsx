@@ -299,6 +299,12 @@ const App: React.FC = () => {
     return owner ? owner.name : 'Membro Desconhecido';
   };
 
+  // Estatísticas de Membros por Dirigente
+  const dirigentesList = ['Mãe Ju', 'Mãe Izabel', 'Pai Fábio', 'Pai Erick'];
+  const getCountByDirigente = (dirigente: string) => {
+    return registeredUsers.filter(u => u.dirigente === dirigente && u.role === 'MEMBER').length;
+  };
+
   if (!isAuthenticated || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
@@ -480,6 +486,17 @@ const App: React.FC = () => {
                   <h1 className="text-2xl font-bold text-gray-800">Gerenciar Membros</h1>
                   <p className="text-gray-500">Administre as contas dos membros cadastrados no {APP_NAME}.</p>
                 </header>
+
+                {/* Resumo por Dirigente */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {dirigentesList.map(d => (
+                    <div key={d} className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                      <span className="text-xs font-bold text-gray-400 uppercase mb-1">{d}</span>
+                      <span className="text-2xl font-black text-amber-900">{getCountByDirigente(d)}</span>
+                      <span className="text-[10px] font-semibold text-gray-500 uppercase">Membros</span>
+                    </div>
+                  ))}
+                </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                   <div className="overflow-x-auto">
